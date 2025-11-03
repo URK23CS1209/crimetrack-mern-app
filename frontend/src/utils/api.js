@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // ✅ full backend URL
+  baseURL: 'https://crimetrack-mern-app.onrender.com/api', // ✅ full backend URL
 });
 
 
