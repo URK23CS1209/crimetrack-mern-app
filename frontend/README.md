@@ -1,70 +1,181 @@
-# Getting Started with Create React App
+# 🚔 CrimeTrack - Digital Crime Investigation Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub last commit](https://img.shields.io/github/last-commit/URK23CS1209/crimetrack-mern-app)
+![GitHub repo size](https://img.shields.io/github/repo-size/URK23CS1209/crimetrack-mern-app)
+![GitHub stars](https://img.shields.io/github/stars/URK23CS1209/crimetrack-mern-app?style=social)
 
-## Available Scripts
+A full-stack MERN application for managing crime investigations with advanced features like data visualization, search, and export capabilities.
 
-In the project directory, you can run:
+## 🌟 Features
+
+- 🔐 **User Authentication** - Secure login/signup with JWT
+- 📊 **Crime Management** - Add, edit, delete, and track crimes
+- 🔍 **Advanced Search** - Filter crimes by multiple criteria
+- 📈 **Data Visualization** - Interactive charts and statistics
+- 📥 **Export Capabilities** - Download crime data as CSV/PDF
+- 👥 **User Management** - Admin dashboard for user control
+- 📱 **Responsive Design** - Works on desktop and mobile
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React.js
+- Context API for state management
+- Chart.js for data visualization
+- CSS3 for styling
+
+**Backend:**
+- Node.js & Express.js
+- MongoDB with Mongoose
+- JWT for authentication
+- bcrypt for password hashing
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/URK23CS1209/crimetrack-mern-app.git
+cd crimetrack-mern-app
+```
+
+2. **Install dependencies**
+```bash
+# Install backend dependencies
+cd backend
+npm install
+
+# Install frontend dependencies
+cd ../frontend
+npm install
+```
+
+3. **Set up environment variables**
+
+Create a `.env` file in the `backend` folder:
+```env
+MONGODB_URI=mongodb://localhost:27017/crimetrack
+JWT_SECRET=your_secret_key_here
+PORT=5000
+```
+
+4. **Start the application**
+
+From the root directory:
+```bash
+npm start
+```
+
+This will start both backend (port 5000) and frontend (port 3000) concurrently.
+
+5. **Open your browser**
+```
+http://localhost:3000
+```
+
+## 📸 Screenshots
+
+*(Add screenshots of your application here)*
+
+## 🎯 Available Scripts
 
 ### `npm start`
+Runs both backend and frontend in development mode.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
+- **`cd backend && npm start`** - Starts the Express server on port 5000
+- MongoDB connection required
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
+- **`cd frontend && npm start`** - Starts React app on port 3000
+- **`npm test`** - Launches the test runner
+- **`npm run build`** - Creates production build
 
-### `npm test`
+## 📁 Project Structure
+```
+crimetrack-mern-app/
+├── backend/
+│   ├── config/          # Database configuration
+│   ├── middleware/      # Authentication middleware
+│   ├── models/          # MongoDB models
+│   ├── routes/          # API routes
+│   ├── server.js        # Express server
+│   └── package.json
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/  # Reusable components
+│   │   ├── pages/       # Page components
+│   │   ├── context/     # Auth context
+│   │   ├── utils/       # API utilities
+│   │   └── App.js
+│   └── package.json
+├── package.json         # Root package (concurrently scripts)
+└── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔐 Default Credentials
 
-### `npm run build`
+For testing purposes, you can create an admin account through the signup page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎨 Features in Detail
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Authentication
+- User registration with validation
+- Secure login with JWT tokens
+- Password encryption using bcrypt
+- Protected routes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Crime Management
+- Create new crime records with details
+- Update existing records
+- Delete crimes (admin only)
+- View crime history and details
 
-### `npm run eject`
+### Dashboard
+- Visual statistics with charts
+- Crime trends over time
+- Status distribution
+- Recent activity feed
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Advanced Search
+- Search by crime type
+- Filter by status (Open, In Progress, Closed)
+- Date range filtering
+- Location-based search
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 👥 Authors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **URK23CS1209** - [GitHub Profile](https://github.com/URK23CS1209)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📄 License
 
-## Learn More
+This project is open source and available under the MIT License.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🙏 Acknowledgments
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Built as part of Web Technology course project
+- Create React App for frontend scaffolding
+- MongoDB for database
+- Express.js for backend framework
 
-### Code Splitting
+## 🐛 Known Issues
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Some npm audit warnings in development dependencies (safe to ignore)
+- MongoDB deprecation warnings (cosmetic, no functionality impact)
 
-### Analyzing the Bundle Size
+## 📞 Support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For issues or questions, please open an issue in the GitHub repository.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+⭐ **Star this repository if you find it helpful!**
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Made with ❤️ for digital crime investigation management

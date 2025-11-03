@@ -1,24 +1,71 @@
 const mongoose = require('mongoose');
 const Crime = require('./models/Crime');
 const User = require('./models/User');
-require('dotenv').config({ path: './backend/.env' });
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
 const seedDatabase = async () => {
   try {
+    // Start in-memory MongoDB server
+    const mongoServer = await MongoMemoryServer.create();
+    const mongoUri = mongoServer.getUri();
+
     // Connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(mongoUri);
     console.log('MongoDB Connected for seeding...');
 
-    // Get all users
-    const users = await User.find();
-    if (users.length === 0) {
-      console.log('No users found. Please create users first.');
-      return;
+    // Create sample users first
+    const sampleUsers = [
+      {
+        name: 'Admin User',
+        email: 'admin@crimetrack.com',
+        password: 'admin123',
+        role: 'admin',
+        department: 'Administration',
+        badgeNumber: 'ADM-001'
+      },
+      {
+        name: 'Officer Smith',
+        email: 'smith@crimetrack.com',
+        password: 'officer123',
+        role: 'user',
+        department: 'Patrol',
+        badgeNumber: 'OFF-001'
+      },
+      {
+        name: 'Officer Johnson',
+        email: 'johnson@crimetrack.com',
+        password: 'officer123',
+        role: 'user',
+        department: 'Investigations',
+        badgeNumber: 'OFF-002'
+      }
+    ];
+
+    // Clear existing users
+    await User.deleteMany({});
+    console.log('Cleared existing users');
+
+    // Hash passwords and create users
+    const bcrypt = require('bcryptjs');
+    const createdUsers = [];
+    for (const userData of sampleUsers) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(userData.password, salt);
+
+      const user = new User({
+        ...userData,
+        password: hashedPassword
+      });
+
+      await user.save();
+      createdUsers.push(user);
     }
 
+    console.log(`Created ${createdUsers.length} sample users`);
+
     // Get admin user
-    const adminUser = users.find(user => user.role === 'admin');
-    const regularUsers = users.filter(user => user.role === 'user');
+    const adminUser = createdUsers.find(user => user.role === 'admin');
+    const regularUsers = createdUsers.filter(user => user.role === 'user');
 
     // Sample crime data
     const sampleCrimes = [
