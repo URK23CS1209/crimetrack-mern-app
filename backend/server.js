@@ -16,14 +16,9 @@ app.use(express.json());
 // ✅ Proper CORS configuration
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",               // Local development
-      "https://crimetrack-mern-app-axqw.vercel.app", // Deployed frontend
-      "https://crimetrack-mern-app.onrender.com/"
-    ], // Frontend URL
-    
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: false, // Must be false when origin is "*"
   })
 );
 
